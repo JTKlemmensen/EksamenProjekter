@@ -1,0 +1,31 @@
+﻿@using WebApplication4.Models;
+@model WebApplication4.Models.Vare[]
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped table-condensed">
+    <thead><tr><td>Navn</td><td>Pris</td></tr></thead>
+    @foreach (Vare v in Model)
+    {
+        <tr> <td>@v.Name</td> <td>@v.Price</td> </tr>
+    }
+</table>
+@using (@Html.BeginForm("Price", "Home"))
+{
+    <label>Alder:</label>
+    @Html.TextBox("alder")
+
+    <label>Ret:</label>
+    /*@Html.DropDownList("ret",
+                    new SelectList(@Model),
+                    "Vælg Ret")*/
+    
+    @Html.DropDownList("ret", new SelectList(
+                  Model,
+                  "Name",
+                  "Name"))
+    <input class="btn btn-sm btn-primary" type="submit" value="Se Pris" />
+}
